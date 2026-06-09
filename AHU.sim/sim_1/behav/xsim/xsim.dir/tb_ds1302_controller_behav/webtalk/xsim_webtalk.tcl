@@ -1,6 +1,6 @@
-webtalk_init -webtalk_dir G:/Project/FPGA/assignment/AHU/AHU.sim/sim_1/behav/xsim/xsim.dir/tb_data_receiver_behav/webtalk/
+webtalk_init -webtalk_dir G:/Project/FPGA/assignment/AHU/AHU.sim/sim_1/behav/xsim/xsim.dir/tb_ds1302_controller_behav/webtalk/
 webtalk_register_client -client project
-webtalk_add_data -client project -key date_generated -value "Tue Mar 10 19:10:10 2026" -context "software_version_and_target_device"
+webtalk_add_data -client project -key date_generated -value "Tue Mar 10 17:33:59 2026" -context "software_version_and_target_device"
 webtalk_add_data -client project -key product_version -value "XSIM v2021.1 (64-bit)" -context "software_version_and_target_device"
 webtalk_add_data -client project -key build_version -value "3247384" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_platform -value "WIN64" -context "software_version_and_target_device"
@@ -14,7 +14,7 @@ webtalk_add_data -client project -key target_package -value "not_applicable" -co
 webtalk_add_data -client project -key target_speed -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key random_id -value "23b55981-a982-4af8-957b-c1e6b4d50b7b" -context "software_version_and_target_device"
 webtalk_add_data -client project -key project_id -value "9f5e85a1001a4720838563ea274da16b" -context "software_version_and_target_device"
-webtalk_add_data -client project -key project_iteration -value "17" -context "software_version_and_target_device"
+webtalk_add_data -client project -key project_iteration -value "24" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_name -value "Windows Server 2016 or Windows 10" -context "user_environment"
 webtalk_add_data -client project -key os_release -value "major release  (build 9200)" -context "user_environment"
 webtalk_add_data -client project -key cpu_name -value "Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz" -context "user_environment"
@@ -24,9 +24,9 @@ webtalk_add_data -client project -key system_ram -value "34.000 GB" -context "us
 webtalk_register_client -client xsim
 webtalk_add_data -client xsim -key Command -value "xsim" -context "xsim\\command_line_options"
 webtalk_add_data -client xsim -key trace_waveform -value "true" -context "xsim\\usage"
-webtalk_add_data -client xsim -key runtime -value "8400730 ns" -context "xsim\\usage"
+webtalk_add_data -client xsim -key runtime -value "200610 ns" -context "xsim\\usage"
 webtalk_add_data -client xsim -key iteration -value "0" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Simulation_Time -value "0.41_sec" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Simulation_Memory -value "17892_KB" -context "xsim\\usage"
-webtalk_transmit -clientid 3474290476 -regid "" -xml G:/Project/FPGA/assignment/AHU/AHU.sim/sim_1/behav/xsim/xsim.dir/tb_data_receiver_behav/webtalk/usage_statistics_ext_xsim.xml -html G:/Project/FPGA/assignment/AHU/AHU.sim/sim_1/behav/xsim/xsim.dir/tb_data_receiver_behav/webtalk/usage_statistics_ext_xsim.html -wdm G:/Project/FPGA/assignment/AHU/AHU.sim/sim_1/behav/xsim/xsim.dir/tb_data_receiver_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
+webtalk_add_data -client xsim -key Simulation_Time -value "0.03_sec" -context "xsim\\usage"
+webtalk_add_data -client xsim -key Simulation_Memory -value "10580_KB" -context "xsim\\usage"
+webtalk_transmit -clientid 387167017 -regid "" -xml G:/Project/FPGA/assignment/AHU/AHU.sim/sim_1/behav/xsim/xsim.dir/tb_ds1302_controller_behav/webtalk/usage_statistics_ext_xsim.xml -html G:/Project/FPGA/assignment/AHU/AHU.sim/sim_1/behav/xsim/xsim.dir/tb_ds1302_controller_behav/webtalk/usage_statistics_ext_xsim.html -wdm G:/Project/FPGA/assignment/AHU/AHU.sim/sim_1/behav/xsim/xsim.dir/tb_ds1302_controller_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
 webtalk_terminate

@@ -13,7 +13,7 @@ module control_tower(
     input [7:0] rtc_sec,
     input [7:0] rtc_min,
     input [7:0] rtc_hour,
-    input [7:0] rtc_day,
+    input [7:0] rtc_date,
     input [7:0] rtc_month,
     input [7:0] rtc_year,
 

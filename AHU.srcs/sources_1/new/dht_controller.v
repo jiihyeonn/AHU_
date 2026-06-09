@@ -64,8 +64,9 @@ module dht11_main_logic(
 
     reg [21:0] counter;
 
-    reg [2:0] state;
+    reg [3:0] state;
     reg i_data_ff1, i_data_ff2;
+    reg low_high;
 
     reg [15:0] high_time_cnt;   // 데이터 high 시간 감지할 counter
     reg [39:0] data;
@@ -95,6 +96,7 @@ module dht11_main_logic(
             high_time_cnt <= 0;
             data <= 0;
             data_bit_cnt <= 0;
+            low_high <= 0;
 
             hum_int <= 0;
             hum_dec <= 0;
@@ -108,6 +110,8 @@ module dht11_main_logic(
                     high_time_cnt <= 0;
                     data <= 0;
                     data_bit_cnt <= 0;
+                    low_high <= 0;
+                    counter <= 0;
 
                     if(start_trigger) begin
                         state <= START_LOW;
@@ -139,16 +143,23 @@ module dht11_main_logic(
                     end
                 end
                 
-                // 응답 기다림 80us low, 80us high
                 WAIT_LOW_HIGH: begin
                     io_mode <= 1;   // input mode
-
-                    if(counter >= TIME_160uS - 1) begin
-                        counter <= 0;
+                    
+                    // rise, fall edge를 기다림
+                    if(i_data_ff1 && !i_data_ff2) begin
+                        low_high <= 1;
+                    end else if(low_high && !i_data_ff1 && i_data_ff2) begin
+                        low_high <= 0;
                         state <= WAIT_BIT_LOW;
-                    end else begin
-                        counter <= counter + 1;
                     end
+                    // 응답 기다림 80us low, 80us high  오류 검출 필요
+                    // if(counter >= TIME_160uS - 1) begin
+                    //     counter <= 0;
+                    //     state <= WAIT_BIT_LOW;
+                    // end else begin
+                    //     counter <= counter + 1;
+                    // end
                 end
 
                 // data 전송 과정에서 high가 들어오기를 기다림
@@ -163,19 +174,23 @@ module dht11_main_logic(
                     if(!i_data_ff1 && i_data_ff2) begin // 하강엣지일때
                         // 50us를 기준으로 1, 0 확인
                         if(high_time_cnt >= TIME_BIT_THRESHOLD) begin
-                            recieved_bit = 1;
+                            recieved_bit <= 1;
                         end else begin
-                            recieved_bit = 0;
+                            recieved_bit <= 0;
                         end
                         state <= STORE_BIT;
                     end else begin
-                        high_time_cnt <= high_time_cnt + 1;
+                        if(high_time_cnt < 16'hffff) begin  // 하강엣지 안들어오는 경우 방지
+                            high_time_cnt <= high_time_cnt + 1;
+                        end
                     end
                 end
 
+                // data에 bit 저장
                 STORE_BIT: begin
                     high_time_cnt <= 0;
-                    data <= {data[38:0], recieved_bit}; 
+                    // shift 시켜가며 밀기
+                    data <= {recieved_bit, data[39:1]};
 
                     if(data_bit_cnt >= 39) begin
                         state <= CHECK_DATA;
@@ -187,12 +202,12 @@ module dht11_main_logic(
 
                 // check sum error 탐지
                 CHECK_DATA : begin
-                    if ((data[39:32] + data[31:24] +
-                         data[23:16] + data[15:8]) == data[7:0]) begin
-                        hum_int <= data[39:32];
-                        hum_dec <= data[31:24];
-                        tem_int <= data[23:16];
+                    if ((data[7:0] + data[15:8] +
+                         data[23:16] + data[31:24]) == data[39:32]) begin
+                        tem_int <= data[7:0];
                         tem_dec <= data[15:8];
+                        hum_int <= data[23:16];
+                        hum_dec <= data[31:24];
                     end else begin
                         // error 처리 필요
                         hum_int <= 0;

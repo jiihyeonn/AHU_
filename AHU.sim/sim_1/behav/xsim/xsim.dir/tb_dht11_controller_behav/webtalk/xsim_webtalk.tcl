@@ -1,6 +1,6 @@
-webtalk_init -webtalk_dir G:/Project/FPGA/assignment/AHU/AHU.sim/sim_1/behav/xsim/xsim.dir/tb_data_receiver_behav/webtalk/
+webtalk_init -webtalk_dir G:/Project/FPGA/assignment/AHU/AHU.sim/sim_1/behav/xsim/xsim.dir/tb_dht11_controller_behav/webtalk/
 webtalk_register_client -client project
-webtalk_add_data -client project -key date_generated -value "Tue Mar 10 19:10:10 2026" -context "software_version_and_target_device"
+webtalk_add_data -client project -key date_generated -value "Tue Mar 10 18:35:55 2026" -context "software_version_and_target_device"
 webtalk_add_data -client project -key product_version -value "XSIM v2021.1 (64-bit)" -context "software_version_and_target_device"
 webtalk_add_data -client project -key build_version -value "3247384" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_platform -value "WIN64" -context "software_version_and_target_device"
@@ -24,9 +24,9 @@ webtalk_add_data -client project -key system_ram -value "34.000 GB" -context "us
 webtalk_register_client -client xsim
 webtalk_add_data -client xsim -key Command -value "xsim" -context "xsim\\command_line_options"
 webtalk_add_data -client xsim -key trace_waveform -value "true" -context "xsim\\usage"
-webtalk_add_data -client xsim -key runtime -value "8400730 ns" -context "xsim\\usage"
+webtalk_add_data -client xsim -key runtime -value "21763255 ns" -context "xsim\\usage"
 webtalk_add_data -client xsim -key iteration -value "0" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Simulation_Time -value "0.41_sec" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Simulation_Memory -value "17892_KB" -context "xsim\\usage"
-webtalk_transmit -clientid 3474290476 -regid "" -xml G:/Project/FPGA/assignment/AHU/AHU.sim/sim_1/behav/xsim/xsim.dir/tb_data_receiver_behav/webtalk/usage_statistics_ext_xsim.xml -html G:/Project/FPGA/assignment/AHU/AHU.sim/sim_1/behav/xsim/xsim.dir/tb_data_receiver_behav/webtalk/usage_statistics_ext_xsim.html -wdm G:/Project/FPGA/assignment/AHU/AHU.sim/sim_1/behav/xsim/xsim.dir/tb_data_receiver_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
+webtalk_add_data -client xsim -key Simulation_Time -value "1.36_sec" -context "xsim\\usage"
+webtalk_add_data -client xsim -key Simulation_Memory -value "17916_KB" -context "xsim\\usage"
+webtalk_transmit -clientid 2906902153 -regid "" -xml G:/Project/FPGA/assignment/AHU/AHU.sim/sim_1/behav/xsim/xsim.dir/tb_dht11_controller_behav/webtalk/usage_statistics_ext_xsim.xml -html G:/Project/FPGA/assignment/AHU/AHU.sim/sim_1/behav/xsim/xsim.dir/tb_dht11_controller_behav/webtalk/usage_statistics_ext_xsim.html -wdm G:/Project/FPGA/assignment/AHU/AHU.sim/sim_1/behav/xsim/xsim.dir/tb_dht11_controller_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
 webtalk_terminate

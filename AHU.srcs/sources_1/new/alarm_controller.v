@@ -73,7 +73,10 @@ module alarm_controller(
                     set_state <= SET_HOUR;
                 end
                 
-                else if ((current_hour == alarm_hour) && (current_min == alarm_min) && (current_sec == 8'd0)) begin
+                else if (
+                    (current_hour == alarm_hour) && 
+                    (current_min == alarm_min) && 
+                    (current_sec == 8'd0)) begin
                         r_alarm_ring <= 1'b1; 
                         led0 <= 1'b0;
                         is_armed <= 1'b0; 

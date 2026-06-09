@@ -6,6 +6,7 @@ module data_receiver(
     input rx_done,
     input [7:0] rx_data,
     input set_time_done,
+    input ds1302_busy,
     output reg set_time_trigger,
     output reg [47:0] time_data
 );
@@ -52,7 +53,7 @@ module data_receiver(
             end
 
             if(!busy) begin
-                if(rear != front) begin // set time 데이터가 있다는 뜻
+                if(rear != front && !ds1302_busy) begin // set time 데이터가 있다는 뜻
                     if({c_queue[rear][0],
                     c_queue[rear][1],
                     c_queue[rear][2],
@@ -64,6 +65,8 @@ module data_receiver(
                         end
                         set_time_trigger <= 1;
                         busy <= 1;
+                    end else begin  // set_time command가 아닐 경우
+                        rear <= rear + 1;
                     end
                 end
             end else begin
